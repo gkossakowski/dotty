@@ -7,6 +7,8 @@ import scala.reflect.io.Path
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 
+import pl.project13.scala.sbt.JmhPlugin
+
 object DottyBuild extends Build {
 
   val baseVersion = "0.1"
@@ -346,6 +348,13 @@ object DottyInjectedPlugin extends AutoPlugin {
         println("Running with javaOptions: " + res)
         res
       }
+    )
+
+  lazy val `dotty-bench-jmh` = project.in(file("bench-jmh")).
+    dependsOn(dotty).
+    enablePlugins(JmhPlugin).
+    settings(
+      overrideScalaVersionSetting
     )
 
    lazy val `scala-library` = project
