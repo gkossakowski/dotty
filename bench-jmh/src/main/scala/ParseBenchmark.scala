@@ -46,7 +46,7 @@ class ParseBenchmark {
   @Warmup(iterations = 20)
   @Measurement(iterations = 20)
   @Fork(3)
-  def parseTyper(bs: BenchmarkState, ts: ThreadState): untpd.Tree = {
+  def parse(bs: BenchmarkState, ts: ThreadState): untpd.Tree = {
     val parser = new parsing.Parsers.Parser(ts.source)(bs.context)
     val tree = parser.parse()
     tree
